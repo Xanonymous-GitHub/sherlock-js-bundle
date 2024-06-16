@@ -531,8 +531,8 @@ function triggerLoadArea() {
         const target = input.attr("data-js-target")
 
         input.remove()
-        $($.find(target)[0]).html(loadingHTML)
-        loadArea($.find(target)[0])
+        $($.find(target)).html(loadingHTML)
+        loadArea($.find(target))
     })
 }
 
@@ -545,8 +545,8 @@ function bindAreaLink() {
         const input = $(this)
         const target = input.attr("data-js-target")
 
-        $($.find(target)[0]).html(loadingHTML)
-        loadArea($.find(target)[0])
+        $($.find(target)).html(loadingHTML)
+        loadArea($.find(target))
         $("#modal").modal("hide")
     })
 }
@@ -562,12 +562,12 @@ function bindSelectChange() {
         const target = input.attr("data-js-target")
         const url = input.attr("data-js-href")
 
-        $($.find(target)[0]).html(loadingHTML)
+        $($.find(target)).html(loadingHTML)
 
         submitGetAjax(
             url + value,
             function (result) {
-                $($.find(target)[0]).html(result)
+                $($.find(target)).html(result)
             },
             target,
         )
@@ -957,7 +957,7 @@ function bindForms() {
     $("[data-js='form']").submit(function () {
         const input = $(this)
         const url = input.attr("action")
-        const target = $($.find(input.attr("data-js-target"))[0])
+        const target = $($.find(input.attr("data-js-target")))
 
         input.find("button[type=submit]").prop("disabled", true)
         input.find("button[type=submit]").addClass("disabled")
