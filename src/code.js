@@ -2,7 +2,7 @@
  * The HTML content to replace a div with when reloading the content
  * @type {string}
  */
-const loadingHTML = '<img src="/img/load.gif" class="mx-auto d-block" height="75px">'
+const loadingHTML = '<img src="/img/load.gif" class="mx-auto d-block" height="75px" alt="">'
 
 let loadedResults = false
 
@@ -317,12 +317,12 @@ function submissionResultsPage() {
 
             //Listener for click events on the "hide" button next to each match
             $("[data-js='match-hide']").unbind()
-            $("[data-js='match-hide']").click(function (e) {
+            $("[data-js='match-hide']").click(function () {
                 hideAll()
             })
 
             $("[data-js='matches-left']").unbind()
-            $("[data-js='matches-left']").click(function (e) {
+            $("[data-js='matches-left']").click(function () {
                 $("#left").addClass("col-lg-9")
                 $("#left").removeClass("col-lg-6")
                 $("#left").removeClass("col-lg-3")
@@ -338,7 +338,7 @@ function submissionResultsPage() {
             })
 
             $("[data-js='matches-right']").unbind()
-            $("[data-js='matches-right']").click(function (e) {
+            $("[data-js='matches-right']").click(function () {
                 $("#right").addClass("col-lg-9")
                 $("#right").removeClass("col-lg-6")
                 $("#right").removeClass("col-lg-3")
@@ -354,7 +354,7 @@ function submissionResultsPage() {
             })
 
             $("[data-js='matches-restore']").unbind()
-            $("[data-js='matches-restore']").click(function (e) {
+            $("[data-js='matches-restore']").click(function () {
                 $("#left").addClass("col-lg-6")
                 $("#left").removeClass("col-lg-9")
                 $("#left").removeClass("col-lg-3")
@@ -371,8 +371,8 @@ function submissionResultsPage() {
 
             //List for click events on the "toggle table" button
             $("[data-js='matches-list']").unbind()
-            $("[data-js='matches-list']").click(function (e) {
-                $("[data-js='matches-list']").each(function (e) {
+            $("[data-js='matches-list']").click(function () {
+                $("[data-js='matches-list']").each(function () {
                     $(this).toggleClass("d-none")
                 })
                 $("#matches-table-container").toggleClass("d-none")
@@ -440,7 +440,7 @@ function submissionResultsPage() {
                 if (area.length) {
                     let first = true
 
-                    area.find(".line-highlight").each(function (e) {
+                    area.find(".line-highlight").each(function () {
                         const input = $(this)
                         input.css(gradient(rgba("#f47b2a")))
 
@@ -459,7 +459,7 @@ function submissionResultsPage() {
                 //Listens for click events anywhere in the code area, only if on the compare page
                 if ($("#match-info").length) {
                     $(".code-toolbar").unbind()
-                    $(".code-toolbar").click(function (e) {
+                    $(".code-toolbar").click(function () {
                         hideAll()
                     })
                 }
@@ -504,7 +504,7 @@ function submissionResultsPage() {
 function loadArea(input) {
     submitGetAjax(
         input.attr("data-js-href"),
-        function (result, status, xhr) {
+        function (result) {
             input.html(result)
         },
         input,
@@ -566,7 +566,7 @@ function bindSelectChange() {
 
         submitGetAjax(
             url + value,
-            function (result, status, xhr) {
+            function (result) {
                 $(target).html(result)
             },
             target,
@@ -640,7 +640,7 @@ function bindModalLinks() {
 
         submitGetAjax(
             url,
-            function (result, status, xhr) {
+            function (result) {
                 $("#modal").html(result)
                 $("#modal").modal("show")
                 bindSelectChange()
@@ -711,7 +711,7 @@ function networkGraphPage() {
         }
 
         function addNode(id) {
-            const result = $.grep(json.nodes, function (n, i) {
+            const result = $.grep(json.nodes, function (n) {
                 return n.id === id
             })
 
@@ -730,21 +730,17 @@ function networkGraphPage() {
         }
 
         function addEdge(id1, id2) {
-            const edge1 = $.grep(json.matches, function (n, i) {
+            const edge1 = $.grep(json.matches, function (n) {
                 return n.to === id1 && n.from === id2
             })
 
-            const edge2 = $.grep(json.matches, function (n, i) {
+            const edge2 = $.grep(json.matches, function (n) {
                 return n.to === id2 && n.from === id1
             })
 
             const array = $.merge(edge1, edge2)
 
             const edge = array[0]
-
-            if (array.length > 1 && edge.score < array[1].score) {
-                const node = array[1]
-            }
 
             const id = Math.min(edge.to, edge.from) + "_" + Math.max(edge.to, edge.from)
 
@@ -760,11 +756,11 @@ function networkGraphPage() {
         }
 
         function addMatches(id) {
-            const to = $.grep(json.matches, function (n, i) {
+            const to = $.grep(json.matches, function (n) {
                 return n.to === id
             })
 
-            const from = $.grep(json.matches, function (n, i) {
+            const from = $.grep(json.matches, function (n) {
                 return n.from === id
             })
 
@@ -777,7 +773,7 @@ function networkGraphPage() {
         }
 
         function addMatchesIncNodes(id) {
-            const to = $.grep(json.matches, function (n, i) {
+            const to = $.grep(json.matches, function (n) {
                 return n.to === id
             })
 
@@ -786,7 +782,7 @@ function networkGraphPage() {
                 addEdge(match.to, match.from)
             }
 
-            const from = $.grep(json.matches, function (n, i) {
+            const from = $.grep(json.matches, function (n) {
                 return n.from === id
             })
 
@@ -972,7 +968,7 @@ function bindForms() {
         submitGenericAjax(
             url,
             data,
-            function (result, status, xhr) {
+            function (result) {
                 target.html(result)
             },
             "POST",
@@ -1214,7 +1210,7 @@ $(function () {
         setInterval(function () {
             submitGetAjax(
                 "/dashboard/index/queue",
-                function (result, status, xhr) {
+                function (result) {
                     $("#queue-parent").html(result)
                 },
                 $("#modal"),
