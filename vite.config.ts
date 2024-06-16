@@ -1,22 +1,43 @@
+import { build, defineConfig, type BuildOptions} from 'vite'
 import { resolve } from 'path'
-import { defineConfig } from 'vite'
+
+const buildOptions = {
+    minify: "esbuild",
+    sourcemap: false,
+    assetsDir: "",
+    emptyOutDir: false,
+    rollupOptions: {
+        output: {
+            preserveModules: false,
+            format: "esm",
+            esModule: true,
+            compact: true,
+            assetFileNames: "[name].min.[ext]",
+            entryFileNames: "[name].min.js",
+            inlineDynamicImports: false,
+            strict: true,
+            validate: true
+        }
+    }
+} satisfies BuildOptions
+
+// This is for building the code.js file solely.
+// If we add multiple inputs in `rollupOptions`, the generated script will not be minified.
+// So building "html and its script" and "the code.js" separately is required.
+await build({
+    configFile: false,
+    build: {
+        ...buildOptions,
+        rollupOptions: {
+            input: resolve(__dirname, 'src/code.js'),
+            ...buildOptions.rollupOptions
+        }
+    }
+})
 
 export default defineConfig({
     build: {
-        lib: {
-            entry: resolve(__dirname, 'src/main.js'),
-            name: "sherlock-lib",
-            formats: ['umd']
-        },
-        minify: "esbuild",
-        sourcemap: false,
-        rollupOptions: {
-            output: {
-                esModule: true,
-                assetFileNames: "[name].min.js",
-                format: "esm",
-            }
-        }
+        ...buildOptions,
     },
     esbuild: {
         legalComments: "none",
