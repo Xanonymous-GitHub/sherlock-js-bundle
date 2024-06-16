@@ -1,4 +1,4 @@
-import { build, defineConfig, type BuildOptions} from 'vite'
+import { build, defineConfig, type BuildOptions } from 'vite'
 import { resolve } from 'path'
 
 const additionalBuildSources = [
