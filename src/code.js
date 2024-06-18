@@ -1,7 +1,9 @@
-import Prism from 'prismjs'
-import loadLanguages from 'prismjs/components'
+import { Prism } from 'prism-esm'
+import { loadPrism } from "./loadPrism"
 
-$(document).on("DOMContentLoaded", () => loadLanguages())
+const prism = new Prism({ manual: false })
+
+$(document).on("ready", () => { loadPrism(prism) })
 
 /**
  * The HTML content to replace a div with when reloading the content
@@ -186,7 +188,7 @@ function submissionResultsPage() {
                             )
                     }
                 }
-                Prism.highlightAll(true)
+                prism.highlightAll(true)
             }
 
             area.show() //show the info area
@@ -438,7 +440,7 @@ function submissionResultsPage() {
         }
 
         //Runs when the file contents finish loading in
-        Prism.hooks.add("complete", function () {
+        prism.hooks.add("complete", function () {
             if (loadingReport) {
                 const area = $("#report-match-info")
 
