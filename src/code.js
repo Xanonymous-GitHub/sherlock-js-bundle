@@ -32,7 +32,7 @@ function submissionResultsPage() {
             submissionId = getSubmissionId()
         }
 
-        let active = -1 // which match is active
+        let active = -1 // which match is active?
         let loaded = 0 // how many files have loaded
         let failed = 0 // how many files have failed to load
         let showing = false // true if showMatch is running
@@ -510,7 +510,7 @@ function loadArea(input) {
 }
 
 /**
- * For each area, load the requested sub-page and replace the area contents
+ * For each area, load the requested subpage and replace the area contents
  */
 function triggerArea() {
     $("[data-js='area']").each(function () {
@@ -1186,7 +1186,7 @@ $(function () {
         window.history.replaceState({}, document.title, clean_uri)
     }
 
-    // Check the status of a job on the results page every 10 seconds
+    // Check the status of a job on the result page every 10 seconds
     if ($("#job-status").length && $("#job-progress").length) {
         const json_uri = clean_uri + "/json"
 
