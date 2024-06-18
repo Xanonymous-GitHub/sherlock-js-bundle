@@ -15,6 +15,7 @@
     "prismjs": "^1.29.0",
     "sass": "^1.77.5",
     "typescript": "^5.4.5",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-minify": "^1.5.2"
   }
 }

@@ -1,5 +1,6 @@
 import { build, defineConfig, type BuildOptions } from 'vite'
 import { resolve } from 'path'
+import minify from 'vite-plugin-minify'
 
 const additionalBuildSources = [
     resolve(__dirname, 'src/code.js'),
@@ -46,6 +47,9 @@ additionalBuildSources.forEach(async (buildSource) => {
 })
 
 export default defineConfig({
+    plugins: [
+        minify(),
+    ],
     build: {
         ...buildOptions,
     },
