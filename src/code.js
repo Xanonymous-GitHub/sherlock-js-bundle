@@ -1,3 +1,5 @@
+import prism from 'prismjs'
+
 /**
  * The HTML content to replace a div with when reloading the content
  * @type {string}
@@ -433,7 +435,7 @@ function submissionResultsPage() {
         }
 
         //Runs when the file contents finish loading in
-        Prism.hooks.add("complete", function () {
+        prism.hooks.add("complete", function () {
             if (loadingReport) {
                 const area = $("#report-match-info")
 
