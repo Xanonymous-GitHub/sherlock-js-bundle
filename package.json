@@ -10,12 +10,12 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.5.30",
-    "@types/prismjs": "^1.26.4",
     "jquery": "^3.7.1",
-    "prismjs": "^1.29.0",
+    "prism-esm": "^1.29.0-fix.4",
     "sass": "^1.77.5",
     "typescript": "^5.4.5",
     "vite": "^5.3.1",
-    "vite-plugin-minify": "^1.5.2"
+    "vite-plugin-minify": "^1.5.2",
+    "zx": "^8.1.2"
   }
 }
