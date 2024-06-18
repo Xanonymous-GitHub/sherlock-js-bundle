@@ -285,8 +285,8 @@ function submissionResultsPage() {
             $("#report-match-info").hide()
 
             //Listener for click events on the "previous" button in the match details div
-            $("[data-js='match-previous']").unbind()
-            $("[data-js='match-previous']").click(function (e) {
+            $("[data-js='match-previous']").off()
+            $("[data-js='match-previous']").on("click", function (e) {
                 let previous = parseInt(active, 10) - 1
 
                 if (previous < 0) {
@@ -297,8 +297,8 @@ function submissionResultsPage() {
             })
 
             //Listener for click events on the "next" button in the match details div
-            $("[data-js='match-next']").unbind()
-            $("[data-js='match-next']").click(function (e) {
+            $("[data-js='match-next']").off()
+            $("[data-js='match-next']").on("click", function (e) {
                 let next = parseInt(active, 10) + 1
 
                 if (next >= Object.keys(matches).length) {
@@ -309,20 +309,20 @@ function submissionResultsPage() {
             })
 
             //Listener for click events on the "show" button next to each match
-            $("[data-js='match-show']").unbind()
-            $("[data-js='match-show']").click(function (e) {
+            $("[data-js='match-show']").off()
+            $("[data-js='match-show']").on("click", function (e) {
                 const input = $(this)
                 showMatch(input.attr("data-js-target"))
             })
 
             //Listener for click events on the "hide" button next to each match
-            $("[data-js='match-hide']").unbind()
-            $("[data-js='match-hide']").click(function () {
+            $("[data-js='match-hide']").off()
+            $("[data-js='match-hide']").on("click", function () {
                 hideAll()
             })
 
-            $("[data-js='matches-left']").unbind()
-            $("[data-js='matches-left']").click(function () {
+            $("[data-js='matches-left']").off()
+            $("[data-js='matches-left']").on("click", function () {
                 $("#left").addClass("col-lg-9")
                 $("#left").removeClass("col-lg-6")
                 $("#left").removeClass("col-lg-3")
@@ -337,8 +337,8 @@ function submissionResultsPage() {
                 $(".restore-right").addClass("d-none")
             })
 
-            $("[data-js='matches-right']").unbind()
-            $("[data-js='matches-right']").click(function () {
+            $("[data-js='matches-right']").off()
+            $("[data-js='matches-right']").on("click", function () {
                 $("#right").addClass("col-lg-9")
                 $("#right").removeClass("col-lg-6")
                 $("#right").removeClass("col-lg-3")
@@ -353,8 +353,8 @@ function submissionResultsPage() {
                 $(".restore-right").removeClass("d-none")
             })
 
-            $("[data-js='matches-restore']").unbind()
-            $("[data-js='matches-restore']").click(function () {
+            $("[data-js='matches-restore']").off()
+            $("[data-js='matches-restore']").on("click", function () {
                 $("#left").addClass("col-lg-6")
                 $("#left").removeClass("col-lg-9")
                 $("#left").removeClass("col-lg-3")
@@ -370,8 +370,8 @@ function submissionResultsPage() {
             })
 
             //List for click events on the "toggle table" button
-            $("[data-js='matches-list']").unbind()
-            $("[data-js='matches-list']").click(function () {
+            $("[data-js='matches-list']").off()
+            $("[data-js='matches-list']").on("click", function () {
                 $("[data-js='matches-list']").each(function () {
                     $(this).toggleClass("d-none")
                 })
@@ -458,10 +458,8 @@ function submissionResultsPage() {
             } else {
                 //Listens for click events anywhere in the code area, only if on the compare page
                 if ($("#match-info").length) {
-                    $(".code-toolbar").unbind()
-                    $(".code-toolbar").click(function () {
-                        hideAll()
-                    })
+                    $(".code-toolbar").off()
+                    $(".code-toolbar").on("click", () => hideAll)
                 }
 
                 hideAll()
@@ -470,8 +468,8 @@ function submissionResultsPage() {
             }
 
             //Listens for click events on highlighted lines
-            $(".line-highlight").unbind()
-            $(".line-highlight").click(function (e) {
+            $(".line-highlight").off()
+            $(".line-highlight").on("click", function (e) {
                 //Only run if there is no active match
                 if (active < 0) {
                     const input = $(this)
@@ -542,8 +540,8 @@ function triggerLoadArea() {
  * Bind events for the trigger area links
  */
 function bindAreaLink() {
-    $("[data-js='triggerAreaLink']").unbind()
-    $("[data-js='triggerAreaLink']").click(function () {
+    $("[data-js='triggerAreaLink']").off()
+    $("[data-js='triggerAreaLink']").on("click", function () {
         const input = $(this)
         const target = input.attr("data-js-target")
 
@@ -559,7 +557,7 @@ function bindAreaLink() {
  * Bind change events for the select inputs
  */
 function bindSelectChange() {
-    $("select[data-js='select']").unbind()
+    $("select[data-js='select']").off()
     $("select[data-js='select']").on("change", function () {
         const input = $(this)
         const value = input.val()
@@ -581,10 +579,10 @@ function bindSelectChange() {
 }
 
 /**
- * Bind change events for the radio inputs on the add submissions page
+ * Bind change events for the radio inputs on the added submissions page
  */
 function bindRadioChange() {
-    $("[data-js='radio-div']").unbind()
+    $("[data-js='radio-div']").off()
     $("[data-js='radio-div']").on("change", function () {
         const input = $(this)
         const value = input.val()
@@ -634,8 +632,8 @@ function bindUsernameChange() {
  * Bind click events for modal links
  */
 function bindModalLinks() {
-    $("[data-js='modal']").unbind()
-    $("[data-js='modal']").click(function () {
+    $("[data-js='modal']").off()
+    $("[data-js='modal']").on("click", function () {
         const input = $(this)
         const url = input.attr("href")
 
@@ -828,8 +826,8 @@ function networkGraphPage() {
         }
 
         function bindEvents() {
-            $("[data-js='submissionAdd']").unbind()
-            $("[data-js='submissionAdd']").click(function () {
+            $("[data-js='submissionAdd']").off()
+            $("[data-js='submissionAdd']").on("click", function () {
                 const input = $(this)
                 const target = input.attr("data-js-target")
 
@@ -838,16 +836,16 @@ function networkGraphPage() {
                 update()
             })
 
-            $("[data-js='submissionMatches']").unbind()
-            $("[data-js='submissionMatches']").click(function () {
+            $("[data-js='submissionMatches']").off()
+            $("[data-js='submissionMatches']").on("click", function () {
                 const input = $(this)
                 const target = input.attr("data-js-target")
 
                 addMatchesIncNodes(target)
             })
 
-            $("[data-js='submissionDelete']").unbind()
-            $("[data-js='submissionDelete']").click(function () {
+            $("[data-js='submissionDelete']").off()
+            $("[data-js='submissionDelete']").on("click", function () {
                 const input = $(this)
                 const target = input.attr("data-js-target")
 
@@ -906,8 +904,8 @@ function networkGraphPage() {
             dataURL = ctx.canvas.toDataURL()
         })
 
-        $("[data-js='edgeDelete']").click(function () {
-            $(this).blur()
+        $("[data-js='edgeDelete']").on("click", function () {
+            $(this).trigger("blur")
 
             const selectedEdges = network.getSelectedEdges()
             for (let i in selectedEdges) {
@@ -917,8 +915,8 @@ function networkGraphPage() {
             update()
         })
 
-        $("[data-js='nodeDelete']").click(function () {
-            $(this).blur()
+        $("[data-js='nodeDelete']").on("click", function () {
+            $(this).trigger("blur")
 
             const selectedNodes = network.getSelectedNodes()
             for (let i in selectedNodes) {
@@ -928,8 +926,8 @@ function networkGraphPage() {
             update()
         })
 
-        $("[data-js='nodeMatches']").click(function () {
-            $(this).blur()
+        $("[data-js='nodeMatches']").on("click", function () {
+            $(this).trigger("blur")
 
             const selectedNodes = network.getSelectedNodes()
             for (let i in selectedNodes) {
@@ -937,9 +935,9 @@ function networkGraphPage() {
             }
         })
 
-        $("[data-js='graphDownload']").click(function () {
+        $("[data-js='graphDownload']").on("click", function () {
             const input = $(this)
-            input.blur()
+            input.trigger("blur")
             input.attr("href", dataURL)
         })
 
@@ -957,8 +955,8 @@ function networkGraphPage() {
  * Bind form submit events
  */
 function bindForms() {
-    $("[data-js='form']").unbind()
-    $("[data-js='form']").submit(function () {
+    $("[data-js='form']").off()
+    $("[data-js='form']").on("submit", function () {
         const input = $(this)
         const url = input.attr("action")
         const target = $(document.body).find(input.attr("data-js-target"))
@@ -1171,7 +1169,7 @@ $(function () {
     rebindEvents()
 
     submissionResultsPage()
-    $(window).focus(function () {
+    $(window).on("focus", function () {
         if (loadedResults === false) {
             $("[data-js='match-hide']").trigger("click")
             loadedResults = true
