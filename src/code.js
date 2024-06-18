@@ -896,7 +896,7 @@ function networkGraphPage() {
             clickEvent()
         }
 
-        network.on("click", function (properties) {
+        network.on("click", function () {
             clickEvent()
         })
 
