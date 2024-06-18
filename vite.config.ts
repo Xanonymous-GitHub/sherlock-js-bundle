@@ -38,6 +38,9 @@ additionalBuildSources.forEach(async (buildSource) => {
                 input: buildSource,
                 ...buildOptions.rollupOptions
             }
+        },
+        esbuild: {
+            legalComments: "none",
         }
     })
 })
