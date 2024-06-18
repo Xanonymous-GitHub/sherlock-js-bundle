@@ -1,9 +1,7 @@
 import Prism from 'prismjs'
 import loadLanguages from 'prismjs/components'
 
-(() => {
-    loadLanguages()
-})()
+$(document).on("DOMContentLoaded", () => loadLanguages())
 
 /**
  * The HTML content to replace a div with when reloading the content
