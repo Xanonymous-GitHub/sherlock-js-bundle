@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "bun run gen-prism && tsc && vite build",
-    "gen-prism": "bun --bun run ./scripts/getAllPrism.ts > ./src/loadPrism.ts"
+    "gen-prism": "bun --bun run ./scripts/getAllPrism.mts > ./src/loadPrism.mts"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.30",

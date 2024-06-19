@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import minify from 'vite-plugin-minify'
 
 const additionalBuildSources = [
-    resolve(__dirname, 'src/code.js'),
+    resolve(__dirname, 'src/code.mjs'),
     resolve(__dirname, 'src/custom.scss')
 ]
 
