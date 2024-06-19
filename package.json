@@ -11,7 +11,7 @@
     "@types/jquery": "^3.5.30",
     "jquery": "^3.7.1",
     "prism-esm": "^1.29.0-fix.4",
-    "sass": "^1.77.5",
+    "sass": "^1.77.6",
     "typescript": "^5.4.5",
     "vite": "^5.3.1",
     "vite-plugin-minify": "^1.5.2",
