@@ -8,20 +8,28 @@ const additionalBuildSources = [
 ]
 
 const buildOptions = {
-    minify: "esbuild",
+    minify: 'terser',
     sourcemap: false,
     assetsDir: "",
     emptyOutDir: false,
     chunkSizeWarningLimit: 700,
+    terserOptions: {
+        compress: true,
+        keep_classnames: false,
+        keep_fnames: false,
+        ie8: false,
+        format: {
+            comments: false,
+            shorthand: true,
+            safari10: false,
+        }
+    },
     rollupOptions: {
         output: {
-            preserveModules: false,
-            format: "esm",
-            esModule: true,
-            compact: true,
+            format: 'cjs',
             assetFileNames: "[name].min.[ext]",
             entryFileNames: "[name].min.js",
-            inlineDynamicImports: false,
+            inlineDynamicImports: true,
             strict: true,
             validate: true
         }
