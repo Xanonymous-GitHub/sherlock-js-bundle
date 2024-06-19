@@ -187,7 +187,7 @@ function submissionResultsPage() {
                             )
                     }
                 }
-                prism.plugins.fileHighlight.highlight()
+                // prism.plugins.fileHighlight.highlight()
             }
 
             area.show() //show the info area
