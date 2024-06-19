@@ -2,8 +2,7 @@ import { Prism } from 'prism-esm'
 import { loadPrism } from "./loadPrism"
 
 const prism = new Prism({ manual: false })
-
-$(document).on("ready", () => { loadPrism(prism) })
+loadPrism(prism)
 
 /**
  * The HTML content to replace a div with when reloading the content
