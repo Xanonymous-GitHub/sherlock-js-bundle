@@ -1,7 +1,7 @@
 import { Prism } from 'prism-esm'
 import { loadPrism } from "./loadPrism"
 
-const prism = new Prism({ manual: false })
+const prism = new Prism()
 loadPrism(prism)
 
 /**
