@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "bun run gen-prism && tsc && vite build",
+    "gen-prism": "bun --bun run ./scripts/getAllPrism.ts > ./src/loadPrism.ts"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.30",
