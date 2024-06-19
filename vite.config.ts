@@ -12,6 +12,7 @@ const buildOptions = {
     sourcemap: false,
     assetsDir: "",
     emptyOutDir: false,
+    chunkSizeWarningLimit: 700,
     rollupOptions: {
         output: {
             preserveModules: false,
