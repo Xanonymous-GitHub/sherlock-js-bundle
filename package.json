@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "dev": "vite",
     "build": "bun run gen-prism && tsc && vite build",
     "gen-prism": "bun --bun run ./scripts/getAllPrism.mts > ./src/loadPrism.mts"
   },
