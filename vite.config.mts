@@ -26,9 +26,11 @@ const buildOptions = {
     },
     rollupOptions: {
         output: {
-            // format: 'commonjs',
+            format: 'cjs',
             strict: true,
-            validate: true
+            validate: true,
+            inlineDynamicImports: false,
+            minifyInternalExports: true,
         }
     }
 } satisfies BuildOptions
