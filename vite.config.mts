@@ -26,7 +26,7 @@ const buildOptions = {
     },
     rollupOptions: {
         output: {
-            format: 'amd',
+            format: 'commonjs',
             assetFileNames: "[name].min.[ext]",
             entryFileNames: "[name].min.js",
             strict: true,
