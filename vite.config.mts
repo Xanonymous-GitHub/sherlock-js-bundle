@@ -29,7 +29,6 @@ const buildOptions = {
             format: 'cjs',
             assetFileNames: "[name].min.[ext]",
             entryFileNames: "[name].min.js",
-            inlineDynamicImports: true,
             strict: true,
             validate: true
         }
