@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "bun run gen-prism && tsc && vite build",
+    "build": "bun run gen-prism && tsc && rm -rf ./dist && vite build",
     "gen-prism": "bun --bun run ./scripts/getAllPrism.mts > ./src/loadPrism.mts"
   },
   "devDependencies": {
