@@ -26,9 +26,7 @@ const buildOptions = {
     },
     rollupOptions: {
         output: {
-            format: 'commonjs',
-            assetFileNames: "[name].min.[ext]",
-            entryFileNames: "[name].min.js",
+            // format: 'commonjs',
             strict: true,
             validate: true
         }
@@ -45,7 +43,11 @@ additionalBuildSources.forEach(async (buildSource) => {
             ...buildOptions,
             rollupOptions: {
                 input: buildSource,
-                ...buildOptions.rollupOptions
+                output: {
+                    ...buildOptions.rollupOptions.output,
+                    assetFileNames: "[name].min.[ext]",
+                    entryFileNames: "[name].min.js",
+                },
             }
         },
         esbuild: {
