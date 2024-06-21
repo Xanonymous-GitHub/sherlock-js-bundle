@@ -10,6 +10,8 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.5.30",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "jquery": "^3.7.1",
     "prism-esm": "^1.29.0-fix.4",
     "sass": "^1.77.6",
@@ -18,5 +20,9 @@
     "vite": "^5.3.1",
     "vite-plugin-minify": "^1.5.2",
     "zx": "^8.1.2"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
