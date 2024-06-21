@@ -1,5 +1,7 @@
 import { Prism } from 'prism-esm'
 import { loadPrism } from "./loadPrism"
+import CodeArea from "./codeArea"
+import { getRenderedComponent } from "./renderComponent";
 
 const prism = new Prism({ manual: false })
 loadPrism(prism)
@@ -164,27 +166,22 @@ function submissionResultsPage() {
 
                     if (obj.submission !== submissionId) {
                         //Refresh the code area
+                        const codeArea = getRenderedComponent(
+                            CodeArea,
+                            {
+                                id: obj.id,
+                                submissionName: obj.submissionName,
+                                submissionId: obj.submission,
+                                displayName: obj.displayName,
+                                highlightLineNumStr: obj.lines,
+                                workspaceId: workspaceId,
+                                fullName: obj.name
+                            }
+                        )
+
                         area
                             .find("#match-code")
-                            .append(
-                                '<div class="card-header">' +
-                                obj.submissionName +
-                                ": " +
-                                obj.displayName +
-                                '</div><pre class="line-numbers mt-0" style="height: 300px; resize: vertical"\n' +
-                                'data-line="' +
-                                obj.lines +
-                                '"\n' +
-                                'data-src="/dashboard/workspaces/manage/' +
-                                workspaceId +
-                                "/submission/" +
-                                obj.submission +
-                                "/file/" +
-                                obj.id +
-                                "/" +
-                                obj.name +
-                                '"></pre>',
-                            )
+                            .append(codeArea)
                     }
                 }
             }
