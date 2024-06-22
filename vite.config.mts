@@ -4,7 +4,7 @@ import minify from 'vite-plugin-minify'
 
 const additionalBuildSources = [
     resolve(__dirname, 'src/code.mjs'),
-    resolve(__dirname, 'src/custom.scss')
+    resolve(__dirname, 'src/styles/custom.scss')
 ]
 
 const buildOptions = {
