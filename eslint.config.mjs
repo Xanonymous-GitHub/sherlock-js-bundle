@@ -4,4 +4,12 @@ export default config({
   formatters: {
     html: true,
   },
+  rules: {
+    'ts/ban-ts-comment': 'off',
+  },
+  javascript: {
+    overrides: {
+      'no-undef': 'off',
+    },
+  },
 })
