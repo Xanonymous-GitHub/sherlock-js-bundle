@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "tsc && rm -rf ./dist && vite build",
     "gen-prism": "bun --bun run ./scripts/getAllPrism.mts > ./src/loadPrism.mts",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --fix --cache"
   },
   "dependencies": {
     "react": "^18.3.1",
