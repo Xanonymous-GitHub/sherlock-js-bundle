@@ -9,5 +9,5 @@ Nothing will be changed.
 ### About this code
 We created a simple html file for showing the script content of the bundle.
 
-Thanks to multi-stage build of vite, 
-we are now able to build the bundle code without importing it into the `index.html` and `main.ts` file. 
+Thanks to multi-stage build of vite,
+we are now able to build the bundle code without importing it into the `index.html` and `main.ts` file.
