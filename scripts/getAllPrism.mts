@@ -48,7 +48,7 @@ function genFile() {
     // So we use @ts-ignore to skip that check.
     ...allPluginImports.map(importLine => `// @ts-expect-error\n${importLine}`),
     'export const loadPrism = (prism: Prism) => {',
-    ...targetNames.map(name => `    ${name}(prism)`),
+    ...targetNames.map(name => `  ${name}(prism)`),
     '}',
   ]
 }
