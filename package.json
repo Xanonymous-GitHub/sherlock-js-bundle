@@ -1,17 +1,26 @@
 {
   "name": "sherlock-js-bundle",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "bun run gen-prism && tsc && rm -rf ./dist && vite build",
-    "gen-prism": "bun --bun run ./scripts/getAllPrism.mts > ./src/loadPrism.mts"
+    "build": "tsc && rm -rf ./dist && vite build",
+    "gen-prism": "bun --bun run ./scripts/getAllPrism.mts > ./src/loadPrism.mts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.21.1",
     "@types/jquery": "^3.5.30",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "eslint": "^9.5.0",
+    "eslint-plugin-format": "^0.1.2",
     "jquery": "^3.7.1",
     "prism-esm": "^1.29.0-fix.4",
     "sass": "^1.77.6",
@@ -20,9 +29,5 @@
     "vite": "^5.3.1",
     "vite-plugin-minify": "^1.5.2",
     "zx": "^8.1.2"
-  },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
   }
 }
