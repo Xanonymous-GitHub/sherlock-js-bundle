@@ -1,6 +1,6 @@
 import { type FC, useEffect } from 'react'
 import type { Prism } from 'prism-esm'
-import { getRenderedComponent } from './utils/renderComponent.ts'
+import { getRenderedComponent } from './utils/renderComponent.mts'
 
 interface CodeAreaProps {
   id: string
