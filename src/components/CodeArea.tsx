@@ -10,7 +10,7 @@ interface CodeAreaProps {
   highlightOptions: CodeToHastOptions
 }
 
-const DEBOUNCE_WAIT = 3000
+const THROTTLE_WAIT = 3000
 
 const CodeArea: FC<CodeAreaProps> = memo(({ sourceCode, highlighter, highlightOptions }) => {
   const renderedAreaHtml = useMemo(
@@ -40,8 +40,8 @@ const CodeArea: FC<CodeAreaProps> = memo(({ sourceCode, highlighter, highlightOp
       setCopyButtonClasses('copy copied')
       setTimeout(() => {
         setCopyButtonClasses('copy')
-      }, DEBOUNCE_WAIT)
-    }, DEBOUNCE_WAIT),
+      }, THROTTLE_WAIT)
+    }, THROTTLE_WAIT),
     [],
   )
 
