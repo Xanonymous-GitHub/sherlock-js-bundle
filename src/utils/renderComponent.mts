@@ -5,7 +5,7 @@ import { flushSync } from 'react-dom'
 export function getRenderedComponent<P extends object>(
   JsxComponent: ElementType<P> | string,
   props?: P,
-): Element | null {
+): Node | null {
   const fragment = new DocumentFragment()
   const root = createRoot(fragment)
 
@@ -13,7 +13,7 @@ export function getRenderedComponent<P extends object>(
     root.render(createElement(JsxComponent, props))
   })
 
-  const child = fragment.firstElementChild
+  const child = fragment.firstChild
   root.unmount()
 
   return child
