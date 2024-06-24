@@ -1,6 +1,7 @@
 import type { FC, MouseEvent } from 'react'
 import type { CodeToHastOptions, createHighlighter } from 'shiki'
-import { StrictMode, useCallback, useMemo, useState } from 'react'
+import { StrictMode, memo, useCallback, useMemo, useState } from 'react'
+import { throttleFn } from '../utils/latency.mts'
 import '../styles/code-area.scss'
 
 interface CodeAreaProps {
@@ -9,8 +10,13 @@ interface CodeAreaProps {
   highlightOptions: CodeToHastOptions
 }
 
-const CodeArea: FC<CodeAreaProps> = ({ sourceCode, highlighter, highlightOptions }) => {
-  const renderedAreaHtml = useMemo(() => highlighter.codeToHtml(sourceCode, highlightOptions), [sourceCode])
+const DEBOUNCE_WAIT = 3000
+
+const CodeArea: FC<CodeAreaProps> = memo(({ sourceCode, highlighter, highlightOptions }) => {
+  const renderedAreaHtml = useMemo(
+    () => highlighter.codeToHtml(sourceCode, highlightOptions),
+    [sourceCode, highlightOptions],
+  )
 
   // It is not recommended to use `dangerouslySetInnerHTML` in React.
   // However, in this case, it is necessary to render the code block.
@@ -26,15 +32,18 @@ const CodeArea: FC<CodeAreaProps> = ({ sourceCode, highlighter, highlightOptions
 
   const [copyButtonClasses, setCopyButtonClasses] = useState('copy')
 
-  const onCopyClicked = useCallback(async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-    e.stopPropagation()
-    e.preventDefault()
-    await navigator.clipboard.writeText(sourceCode)
-    setCopyButtonClasses('copy copied')
-    setTimeout(() => {
-      setCopyButtonClasses('copy')
-    }, 3000)
-  }, [])
+  const onCopyClicked = useCallback(
+    throttleFn(async (e: MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      e.preventDefault()
+      await navigator.clipboard.writeText(sourceCode)
+      setCopyButtonClasses('copy copied')
+      setTimeout(() => {
+        setCopyButtonClasses('copy')
+      }, DEBOUNCE_WAIT)
+    }, DEBOUNCE_WAIT),
+    [],
+  )
 
   return (
     <div className="code-area">
@@ -50,6 +59,6 @@ const CodeArea: FC<CodeAreaProps> = ({ sourceCode, highlighter, highlightOptions
       }
     </div>
   )
-}
+})
 
 export default CodeArea
