@@ -2,6 +2,7 @@ import type { FC, MouseEvent } from 'react'
 import type { CodeToHastOptions, createHighlighter } from 'shiki'
 import { StrictMode, memo, useCallback, useMemo, useState } from 'react'
 import { throttleFn } from '../utils/latency.mts'
+import { copyToClipboard } from '../utils/clibboard.mts'
 import '../styles/code-area.scss'
 
 interface CodeAreaProps {
@@ -36,7 +37,7 @@ const CodeArea: FC<CodeAreaProps> = memo(({ sourceCode, highlighter, highlightOp
     throttleFn(async (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation()
       e.preventDefault()
-      await navigator.clipboard.writeText(sourceCode)
+      await copyToClipboard(sourceCode)
       setCopyButtonClasses('copy copied')
       setTimeout(() => {
         setCopyButtonClasses('copy')
