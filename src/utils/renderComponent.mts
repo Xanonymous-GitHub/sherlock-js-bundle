@@ -1,5 +1,5 @@
 import { type ElementType, createElement } from 'react'
-import { type Root } from 'react-dom/client'
+import type { Root } from 'react-dom/client'
 import { flushSync } from 'react-dom'
 
 export function getRenderedComponent<P extends object>(
