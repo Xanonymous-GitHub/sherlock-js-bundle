@@ -1,0 +1,111 @@
+.code-area {
+  margin: 16px 0;
+  border-radius: 8px;
+  position: relative;
+  overflow-x: auto;
+  transition: background-color;
+  transition-duration: .5s;
+
+  & .language-name {
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    z-index: 2;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(235, 235, 245, .38);
+    transition: color .4s, opacity .4s;
+    user-select: none;
+    line-height: 24px;
+    text-size-adjust: 100%;
+    box-sizing: border-box;
+  }
+  &:hover .language-name {
+    opacity: 0;
+  }
+
+  & .copy {
+    direction: ltr;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    border: 1px solid #2e2e32;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    background-color: #202127;
+    opacity: 0;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E");
+    background-position: 50%;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    transition: border-color .25s, background-color .25s, opacity .25s;
+
+    &.copied {
+      border-radius: 0 4px 4px 0;
+      background-color: #1b1b1f;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
+
+      &:before {
+        position: relative;
+        top: -1px;
+        transform: translate(calc(-100% - 1px));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #2e2e32;
+        border-right: 0;
+        border-radius: 4px 0 0 4px;
+        padding: 0 10px;
+        width: fit-content;
+        height: 40px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(235, 235, 245, .6);
+        background-color: #1b1b1f;
+        white-space: nowrap;
+        content: "Copied";
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+      border-color: #2e2e32;
+      background-color: #1b1b1f;
+    }
+  }
+  &:hover .copy {
+    opacity: 1;
+  }
+
+  & pre {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 20px 0;
+    background: transparent;
+    overflow-x: auto;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    tab-size: 4;
+    hyphens: none;
+
+    & code {
+      display: block;
+      padding: 0 24px;
+      width: fit-content;
+      min-width: 100%;
+      line-height: 1.7;
+      font-size: .875em;
+      color: rgba(235, 235, 245, .6);
+      transition: color .5s;
+    }
+  }
+}
