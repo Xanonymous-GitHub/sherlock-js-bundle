@@ -1,5 +1,6 @@
-import type { FC } from 'react'
+import type { FC, MouseEvent } from 'react'
 import type { CodeToHastOptions, createHighlighter } from 'shiki'
+import { StrictMode, useCallback, useMemo, useState } from 'react'
 import '../styles/code-area.scss'
 
 interface CodeAreaProps {
@@ -9,7 +10,7 @@ interface CodeAreaProps {
 }
 
 const CodeArea: FC<CodeAreaProps> = ({ sourceCode, highlighter, highlightOptions }) => {
-  const renderedAreaHtml = highlighter.codeToHtml(sourceCode, highlightOptions)
+  const renderedAreaHtml = useMemo(() => highlighter.codeToHtml(sourceCode, highlightOptions), [sourceCode])
 
   // It is not recommended to use `dangerouslySetInnerHTML` in React.
   // However, in this case, it is necessary to render the code block.
@@ -23,16 +24,28 @@ const CodeArea: FC<CodeAreaProps> = ({ sourceCode, highlighter, highlightOptions
   const codeArea = codeDOMConverter.firstElementChild
   codeDOMConverter.remove()
 
+  const [copyButtonClasses, setCopyButtonClasses] = useState('copy')
+
+  const onCopyClicked = useCallback(async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    e.stopPropagation()
+    e.preventDefault()
+    await navigator.clipboard.writeText(sourceCode)
+    setCopyButtonClasses('copy copied')
+    setTimeout(() => {
+      setCopyButtonClasses('copy')
+    }, 3000)
+  }, [])
+
   return (
     <div className="code-area">
       {
         codeArea
         && (
-          <>
-            <button title="Copy Code" className="copy"></button>
+          <StrictMode>
+            <button title="Copy Code" className={copyButtonClasses} onClick={e => onCopyClicked(e)}></button>
             <span className="language-name">{highlightOptions.lang}</span>
             <div dangerouslySetInnerHTML={{ __html: codeArea.outerHTML }} />
-          </>
+          </StrictMode>
         )
       }
     </div>
