@@ -46,7 +46,7 @@ function genFile() {
     ...allComponentImports,
     // Since plugins do not have type definitions, importing those will cause module not found error
     // So we use @ts-ignore to skip that check.
-    ...allPluginImports.map(importLine => `// @ts-expect-error\n${importLine}`),
+    ...allPluginImports.map(importLine => `// @ts-ignore\n${importLine}`),
     'export const loadPrism = (prism: Prism) => {',
     ...targetNames.map(name => `  ${name}(prism)`),
     '}',
