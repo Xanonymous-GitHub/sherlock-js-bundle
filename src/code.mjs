@@ -1,16 +1,4 @@
-import { Prism } from 'prism-esm'
-import { loadPrism } from './loadPrism'
-import CodeArea from './codeArea'
-import { getRenderedComponent } from './utils/renderComponent.js'
-
-const prism = new Prism({ manual: false })
-loadPrism(prism)
-
-/**
- * The HTML content to replace a div with when reloading the content
- * @type {string}
- */
-const loadingHTML = '<img src="/img/load.gif" class="mx-auto d-block" height="75px" alt="">'
+import './styles/custom.scss'
 
 let loadedResults = false
 
@@ -41,7 +29,7 @@ function submissionResultsPage() {
     }
 
     let active = -1 // which match is active?
-    let loaded = 0 // how many files have loaded
+    const loaded = 0 // how many files have loaded
     let failed = 0 // how many files have failed to load
     let showing = false // true if showMatch is running
     let printed = false // true if the print dialog has been shown
@@ -68,9 +56,6 @@ function submissionResultsPage() {
       const right = rgba('#2d2d2d')
 
       return {
-        background: colour,
-        background: `-moz-linear-gradient(90deg, ${colour} 0%, ${right} 100%)`,
-        background: `-webkit-linear-gradient(90deg, ${colour} 0%, ${right} 100%)`,
         background: `linear-gradient(90deg, ${colour} 0%, ${right} 100%)`,
       }
     }
@@ -166,22 +151,22 @@ function submissionResultsPage() {
 
           if (obj.submission !== submissionId) {
             // Refresh the code area
-            const codeArea = getRenderedComponent(
-              CodeArea,
-              {
-                id: obj.id,
-                submissionName: obj.submissionName,
-                submissionId: obj.submission,
-                displayName: obj.displayName,
-                highlightLineNumStr: obj.lines,
-                workspaceId,
-                fullName: obj.name,
-              },
-            )
-
-            area
-              .find('#match-code')
-              .append(codeArea)
+            // const codeArea = getRenderedComponent(
+            //   CodeArea,
+            //   {
+            //     id: obj.id,
+            //     submissionName: obj.submissionName,
+            //     submissionId: obj.submission,
+            //     displayName: obj.displayName,
+            //     highlightLineNumStr: obj.lines,
+            //     workspaceId,
+            //     fullName: obj.name,
+            //   },
+            // )
+            //
+            // area
+            //   .find('#match-code')
+            //   .append(codeArea)
           }
         }
       }
@@ -434,66 +419,6 @@ function submissionResultsPage() {
         }
       }
     }
-
-    // Runs when the file contents finish loading in
-    prism.hooks.add('complete', () => {
-      if (loadingReport) {
-        const area = $('#report-match-info')
-
-        if (area.length) {
-          let first = true
-
-          area.find('.line-highlight').each(function () {
-            const input = $(this)
-            input.css(gradient(rgba('#f47b2a')))
-
-            if (first) {
-              // Scroll the file div to the top of the line
-              const position = input.position()
-              if (position != null) {
-                area.find('.line-numbers').scrollTop(position.top)
-              }
-
-              first = false
-            }
-          })
-        }
-      }
-      else {
-        // Listens for click events anywhere in the code area, only if on the compare page
-        if ($('#match-info').length) {
-          $('.code-toolbar').off()
-          $('.code-toolbar').on('click', () => hideAll)
-        }
-
-        hideAll()
-        loaded++
-        printEvent()
-      }
-
-      // Listens for click events on highlighted lines
-      $('.line-highlight').off()
-      $('.line-highlight').on('click', function (e) {
-        // Only run if there is no active match
-        if (active < 0) {
-          const input = $(this)
-
-          const lineNum = input.attr('data-range') // fetch the line element
-          const fileId = input.closest('pre').attr('data-file-id') // get the file id of the line
-          const matchId = lineMap[fileId].visible[lineNum] // get the match of the line
-
-          if (matchId != null) {
-            showMatch(matchId)
-          }
-
-          // Stops the [data-js='comparison'] event being called which
-          // would undo the effects of this event by hiding the match
-          // details
-          e.stopPropagation()
-        }
-      })
-    })
-
     bind()
   }
 }
@@ -527,18 +452,20 @@ function triggerArea() {
 /**
  * For each trigger element, trigger the load area fn
  */
-function triggerLoadArea() {
-  $('[data-js=\'triggerArea\']').each(function () {
-    const input = $(this)
-    const target = input.attr('data-js-target')
-
-    input.remove()
-
-    const areaToLoad = $(document.body).find(target)
-    areaToLoad.html(loadingHTML)
-    loadArea(areaToLoad)
-  })
-}
+// FIXME: 'data-js=trigger' not found when page loaded.
+// function triggerLoadArea() {
+//   $('[data-js=\'area\']').each(function () {
+//     console.log('sdfsdfsdfsdfsdfsdfsdfsdfsdf')
+//     const input = $(this)
+//     const target = input.attr('data-js-target')
+//
+//     input.remove()
+//
+//     const areaToLoad = $(document.body).find(target)
+//     areaToLoad.children().replaceWith(loadingHTML)
+//     loadArea(areaToLoad)
+//   })
+// }
 
 /**
  * Bind events for the trigger area links
@@ -550,7 +477,7 @@ function bindAreaLink() {
     const target = input.attr('data-js-target')
 
     const areaToLoad = $(document.body).find(target)
-    areaToLoad.html(loadingHTML)
+    areaToLoad.children().replaceWith(loadingHTML)
     loadArea(areaToLoad)
 
     $('#modal').modal('hide')
@@ -568,7 +495,7 @@ function bindSelectChange() {
     const target = input.attr('data-js-target')
     const url = input.attr('data-js-href')
 
-    $(document.body).find(target).html(loadingHTML)
+    $(document.body).find(target).children().replaceWith(loadingHTML)
 
     submitGetAjax(
       url + value,
@@ -1164,7 +1091,7 @@ function submitGenericAjax(url, data, success, type, target) {
 function rebindEvents() {
   displayModalLinks()
   triggerArea()
-  triggerLoadArea()
+  // triggerLoadArea()
   bindTooltips()
   bindSelectChange()
   bindModalLinks()
@@ -1234,6 +1161,8 @@ $(() => {
       )
     }, 5000)
   }
+
+  import('./mountCodeArea.mts').then(({ mountCodeArea }) => { mountCodeArea('material-theme-darker') })
 })
 
 window.addEventListener('load', () => {
