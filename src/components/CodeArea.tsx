@@ -1,5 +1,6 @@
 import type { FC, MouseEvent } from 'react'
-import type { CodeToHastOptions, createHighlighter } from 'shiki'
+import type { CodeToHastOptions } from 'shiki'
+import type { createHighlighterCore } from 'shiki/core'
 import { StrictMode, memo, useCallback, useMemo, useState } from 'react'
 import { throttleFn } from '../utils/latency.mts'
 import { copyToClipboard } from '../utils/clibboard.mts'
@@ -7,7 +8,7 @@ import '../styles/code-area.scss'
 
 interface CodeAreaProps {
   sourceCode: string
-  highlighter: Awaited<ReturnType<typeof createHighlighter>>
+  highlighter: Awaited<ReturnType<typeof createHighlighterCore>>
   highlightOptions: CodeToHastOptions
 }
 
