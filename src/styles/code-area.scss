@@ -6,7 +6,9 @@
 
   margin: 16px -8px;
   position: relative;
-  overflow-x: auto;
+  overflow: auto;
+  scrollbar-width: thin;
+  height: 100%;
   transition: background-color;
   transition-duration: .5s;
 
