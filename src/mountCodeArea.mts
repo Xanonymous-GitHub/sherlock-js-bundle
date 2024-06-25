@@ -16,14 +16,14 @@ export async function mountCodeArea(theme: string) {
     }
 
     const codeArea = (await import('./components/CodeArea.tsx')).default
-    const { bundledLanguages, createHighlighter } = (await import('shiki'))
+    const { createHighlighter } = (await import('shiki'))
     const { renderComponent } = (await import('./utils/renderComponent.mts'))
 
     renderComponent(codeArea, codeAreaPlace, {
       sourceCode,
       highlighter: await createHighlighter({
         themes: [theme],
-        langs: Object.keys(bundledLanguages),
+        langs: [lang],
       }),
       highlightOptions: {
         lang,
