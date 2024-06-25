@@ -1,17 +1,11 @@
 import { type ElementType, createElement } from 'react'
-import type { Root } from 'react-dom/client'
-import { flushSync } from 'react-dom'
+import type { Container } from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 
-export function getRenderedComponent<P extends object>(
+export function renderComponent<P extends object>(
   JsxComponent: ElementType<P> | string,
-  root: Root,
+  rootContainer: Container,
   props?: P,
-): Node | null {
-  const fragment = new DocumentFragment()
-
-  flushSync(() => {
-    root.render(createElement(JsxComponent, props))
-  })
-
-  return fragment.firstChild
+): void {
+  createRoot(rootContainer).render(createElement(JsxComponent, props))
 }
