@@ -453,19 +453,18 @@ function triggerArea() {
  * For each trigger element, trigger the load area fn
  */
 // FIXME: 'data-js=trigger' not found when page loaded.
-// function triggerLoadArea() {
-//   $('[data-js=\'area\']').each(function () {
-//     console.log('sdfsdfsdfsdfsdfsdfsdfsdfsdf')
-//     const input = $(this)
-//     const target = input.attr('data-js-target')
-//
-//     input.remove()
-//
-//     const areaToLoad = $(document.body).find(target)
-//     areaToLoad.children().replaceWith(loadingHTML)
-//     loadArea(areaToLoad)
-//   })
-// }
+function triggerLoadArea() {
+  $('[data-js=\'area\']').each(function () {
+    const input = $(this)
+    const target = input.attr('data-js-target')
+
+    input.remove()
+
+    const areaToLoad = $(document.body).find(target)
+    areaToLoad.children().replaceWith(loadingHTML)
+    loadArea(areaToLoad)
+  })
+}
 
 /**
  * Bind events for the trigger area links
