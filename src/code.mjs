@@ -892,7 +892,10 @@ function networkGraphPage() {
  */
 function bindForms() {
   $('[data-js=\'form\']').off()
-  $('[data-js=\'form\']').on('submit', function () {
+  $('[data-js=\'form\']').on('submit', function (e) {
+    e.stopPropagation()
+    e.stopImmediatePropagation()
+
     const input = $(this)
     const url = input.attr('action')
     const target = $(document.body).find(input.attr('data-js-target'))
@@ -903,11 +906,16 @@ function bindForms() {
     const data = new FormData(this)
     data.append('ajax', 'true')
 
+    const firstFileName = [...data.values()][1]?.name ?? ''
+
     submitGenericAjax(
       url,
       data,
       (result) => {
         target.html(result)
+        if (firstFileName !== '') {
+          location.reload()
+        }
       },
       'POST',
       target,
@@ -1089,7 +1097,7 @@ function submitGenericAjax(url, data, success, type, target) {
 function rebindEvents() {
   displayModalLinks()
   triggerArea()
-  // triggerLoadArea()
+  triggerLoadArea()
   bindTooltips()
   bindSelectChange()
   bindModalLinks()
