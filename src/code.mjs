@@ -1168,7 +1168,7 @@ $(() => {
     }, 5000)
   }
 
-  import('./mountCodeArea.mts').then(({ mountCodeArea }) => { mountCodeArea('material-theme-darker') })
+  import('./mountCodeArea.mts').then(({ mountCodeArea }) => { mountCodeArea('github-dark-dimmed') })
 })
 
 window.addEventListener('load', () => {
