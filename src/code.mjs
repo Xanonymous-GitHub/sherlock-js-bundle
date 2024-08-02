@@ -529,7 +529,6 @@ function bindRadioChange() {
     const input = $(this)
     const name = input.attr('name')
     const value = Cookies.get(`radio_${name}`)
-    console.log(name, value)
 
     let checked = false
     if (value != null) {
