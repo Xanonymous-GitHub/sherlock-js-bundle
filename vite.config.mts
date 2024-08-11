@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
 import { type BuildOptions, type ESBuildOptions, build, defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import minify from 'vite-plugin-minify'
+import { ViteMinifyPlugin } from 'vite-plugin-minify'
 
 const additionalBuildSources = [
   resolve(__dirname, 'src/code.mjs'),
@@ -43,7 +43,7 @@ if (isProd === 'true') {
       configFile: false,
       plugins: [
         react(),
-        minify(),
+        ViteMinifyPlugin({}),
       ],
       build: {
         ...buildOptions,
@@ -66,7 +66,7 @@ if (isProd === 'true') {
 export default defineConfig({
   plugins: [
     react(),
-    minify(),
+    ViteMinifyPlugin({}),
   ],
   build: {
     ...buildOptions,
