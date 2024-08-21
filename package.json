@@ -14,10 +14,10 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.26.0",
+    "@antfu/eslint-config": "^2.27.0",
     "@types/bun": "^1.1.6",
     "@types/jquery": "^3.5.30",
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^9.9.0",
@@ -26,7 +26,7 @@
     "sass": "^1.77.8",
     "shiki": "^1.14.1",
     "typescript": "^5.5.4",
-    "vite": "^5.4.1",
+    "vite": "^5.4.2",
     "vite-plugin-minify": "^2.0.0",
     "zx": "^8.1.4"
   }
