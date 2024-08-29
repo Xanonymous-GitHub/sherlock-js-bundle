@@ -14,7 +14,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.27.3",
+    "@antfu/eslint-config": "^3.0.0",
     "@types/bun": "^1.1.8",
     "@types/jquery": "^3.5.30",
     "@types/react": "^18.3.4",
