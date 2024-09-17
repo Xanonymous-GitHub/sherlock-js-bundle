@@ -17,27 +17,19 @@ function toSmallCamelCase(data: string) {
 const targetNames: Array<string> = []
 
 cd(prismComponentsPath)
-const allComponentImports = (await $`ls *.ts`).stdout
-  .split(/\r?\n/)
-  .map(item => item.trim())
-  .filter(item => item !== '')
-  .map((item) => {
-    const importName = item.replace('.d.ts', '')
-    const targetName = `${toSmallCamelCase(importName.match(/(?<=-).+/)![0])}Loader`
-    targetNames.push(targetName)
-    return `import { loader as ${targetName} } from 'prism-esm/components/${importName}'`
-  })
+const allComponentImports = (await $`ls *.ts`).stdout.split(/\r?\n/).map(item => item.trim()).filter(item => item !== '').map((item) => {
+  const importName = item.replace('.d.ts', '')
+  const targetName = `${toSmallCamelCase(importName.match(/(?<=-).+/)![0])}Loader`
+  targetNames.push(targetName)
+  return `import { loader as ${targetName} } from 'prism-esm/components/${importName}'`
+})
 
 cd(prismPluginsPath)
-const allPluginImports = (await $`ls`).stdout
-  .split(/\r?\n/)
-  .map(item => item.trim())
-  .filter(item => item !== '')
-  .map((item) => {
-    const camelName = toSmallCamelCase(item)
-    targetNames.push(camelName)
-    return `import { Plugin as ${camelName} } from 'prism-esm/plugins/${item}/prism-${item}'`
-  })
+const allPluginImports = (await $`ls`).stdout.split(/\r?\n/).map(item => item.trim()).filter(item => item !== '').map((item) => {
+  const camelName = toSmallCamelCase(item)
+  targetNames.push(camelName)
+  return `import { Plugin as ${camelName} } from 'prism-esm/plugins/${item}/prism-${item}'`
+})
 
 function genFile() {
   return [

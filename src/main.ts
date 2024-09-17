@@ -1,6 +1,6 @@
 import { createHighlighterCore } from 'shiki/core'
-import minDarkTheme from 'shiki/themes/min-dark.mjs'
 import jsLang from 'shiki/langs/javascript.mjs'
+import minDarkTheme from 'shiki/themes/min-dark.mjs'
 import getWasm from 'shiki/wasm'
 
 (async () => {
