@@ -10,15 +10,15 @@
     "lint:fix": "eslint . --fix --cache"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.9.1",
     "@types/bun": "^1.1.13",
     "@types/jquery": "^3.5.32",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.3",
     "eslint": "^9.15.0",
     "eslint-plugin-format": "^0.1.2",
