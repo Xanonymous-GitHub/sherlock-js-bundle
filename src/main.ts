@@ -1,7 +1,7 @@
+import { createOnigurumaEngine } from '@shikijs/engine-oniguruma'
 import { createHighlighterCore } from 'shiki/core'
 import jsLang from 'shiki/langs/javascript.mjs'
 import minDarkTheme from 'shiki/themes/min-dark.mjs'
-import getWasm from 'shiki/wasm'
 
 (async () => {
   const code = await (await fetch('/code.min.js')).text()
@@ -10,7 +10,7 @@ import getWasm from 'shiki/wasm'
     langs: [
       jsLang,
     ],
-    loadWasm: getWasm,
+    engine: createOnigurumaEngine(),
   })
   const codeBlock = highlighter.codeToHtml(code, {
     lang: 'javascript',
