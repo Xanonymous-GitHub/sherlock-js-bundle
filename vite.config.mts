@@ -1,6 +1,7 @@
+import type { BuildOptions, ESBuildOptions } from 'vite'
 import { resolve } from 'node:path'
 import react from '@vitejs/plugin-react'
-import { build, type BuildOptions, defineConfig, type ESBuildOptions } from 'vite'
+import { build, defineConfig } from 'vite'
 import { ViteMinifyPlugin } from 'vite-plugin-minify'
 
 const additionalBuildSources = [

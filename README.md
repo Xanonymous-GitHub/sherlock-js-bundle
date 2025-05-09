@@ -27,4 +27,3 @@ Please install Bunjs before starting.
 **Built Assets:**
 The built assets will be located in the `dist/assets` directory.
 You may use these built assets in another place.
-
